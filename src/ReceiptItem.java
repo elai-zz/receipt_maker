@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 /**
  * Created by estella on 2/29/16.
@@ -7,6 +8,8 @@ public class ReceiptItem {
 
     public static final double BASIC_TAX_RATE = 0.1;
     public static final double IMPORT_TAX_RATE = 0.05;
+    private final DecimalFormat decimalFormat = new DecimalFormat("#.00");
+
 
     private String name;
     private double cost;
@@ -61,7 +64,7 @@ public class ReceiptItem {
         }
         stringBuffer.append(this.name);
         stringBuffer.append(" : ");
-        stringBuffer.append(getCostWithTax());
+        stringBuffer.append(decimalFormat.format(getCostWithTax()));
 
         return stringBuffer.toString();
     }
