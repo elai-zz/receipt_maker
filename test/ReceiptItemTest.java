@@ -6,7 +6,7 @@ public class ReceiptItemTest {
 
     @Test
     public void testPrettyPrintNoUnit() {
-        ReceiptItem receiptItem = new ReceiptItem("book", 12.49, false, false, 1, null);
+        ReceiptItem receiptItem = new ReceiptItem("book", 12.49, false, true, 1, null);
         String prettyPrint = receiptItem.prettyPrintItem();
         assertEquals("1 book : 12.49", prettyPrint);
     }
@@ -20,10 +20,10 @@ public class ReceiptItemTest {
 
 
     @Test
-    public void testPrettyPrintHasUnit() {
+    public void testPrettyPrintTaxableImportHasUnit() {
         ReceiptItem receiptItem = new ReceiptItem("perfume", 27.99, true, false, 1, "bottle");
         String prettyPrint = receiptItem.prettyPrintItem();
-        assertEquals("1 imported bottle of perfume : 27.99", prettyPrint);
+        assertEquals("1 imported bottle of perfume : 32.19", prettyPrint);
     }
 
     @Test

@@ -11,6 +11,7 @@ public class ReceiptParserTest {
 
     @Test
     public void testParser() {
+        parser.setUpTaxableMap();
         ReceiptItem item = parser.parseReceiptLine("1 book at 12.49");
         assertEquals(1, item.getQuantity());
         assertEquals(12.49, item.getCost(), 0);
@@ -18,6 +19,7 @@ public class ReceiptParserTest {
 
     @Test
     public void testParser1() {
+        parser.setUpTaxableMap();
         ReceiptItem item = parser.parseReceiptLine("1 music CD at 14.99");
         assertEquals(1, item.getQuantity());
         assertEquals(14.99, item.getCost(), 0);
@@ -27,9 +29,11 @@ public class ReceiptParserTest {
 
     @Test
     public void testParser2() {
+        parser.setUpTaxableMap();
         ReceiptItem item = parser.parseReceiptLine("1 imported box of chocolates at 10.00");
         assertEquals(1, item.getQuantity());
         assertEquals(10.00, item.getCost(), 0);
+        assertEquals(10.50, item.getCostWithTax(), 0);
         assertEquals("chocolates", item.getName());
         assertEquals(true, item.isImport());
         assertEquals(true, item.isTaxExempt());
@@ -37,6 +41,7 @@ public class ReceiptParserTest {
 
     @Test
     public void testParser3() {
+        parser.setUpTaxableMap();
         ReceiptItem item = parser.parseReceiptLine("1 music CD at 14.99");
         assertEquals(1, item.getQuantity());
         assertEquals("music CD", item.getName());
